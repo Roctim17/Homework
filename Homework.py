@@ -18,6 +18,12 @@ f.sort()
 print(f)
 g = ["roctim","roc","Rt","Rt17","Roc"]
 print(g)
-
-
 print("Hello World",a,b,d,e,ab,f,g,e)
+
+
+
+# Home Work 
+
+
+dcl = {'rfg':68,'jdfhj':85,'kdhfjk':74,'jghfj':88,'fg':63}
+print(dcl)
