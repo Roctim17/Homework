@@ -102,3 +102,6 @@ a6.astype(float)
 a6[2]
 a3[5]
 a1.sort()
+
+
+# end of page 15 
