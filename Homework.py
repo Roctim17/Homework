@@ -105,3 +105,19 @@ a1.sort()
 
 
 # end of page 15 
+
+
+import pandas as pd
+s1 = pd.Series ([2,3,4,5])
+print(s1)
+
+s2 = pd.Series ([5,8,7,6]), index=['a','b','c','d']
+print(s2)
+
+s3 = pd.Series ([5,8,7,6], index['fd',25,True])
+print(s3)
+
+s4 =pd.Series ({'a':1,'b':'boy','c':3})
+print(s4)
+
+# End of page 18
