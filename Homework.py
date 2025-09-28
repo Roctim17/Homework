@@ -70,3 +70,15 @@ set1|set2
 set1&set2
 # 或写成 setl.intersection （set2）
 # (1, 2,3,5} print
+
+# end of page 14 
+
+
+import numpy as np
+a1=np.array([5,4,1,2,3])
+a2=np.arange(10)
+a3=np.arange(2,6,0.5)
+
+print('a1:',a1)
+print('a2:',a2)
+print('a3:',a3)
