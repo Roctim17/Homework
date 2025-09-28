@@ -1,3 +1,5 @@
+
+
 print ("Hello World")
 a = [1,2,3,4,5]
 print(a)
@@ -71,10 +73,12 @@ set1&set2
 # 或写成 setl.intersection （set2）
 # (1, 2,3,5} print
 
+
+
 # end of page 14 
 
 
-import numpy as np
+import numpy as np 
 a1=np.array([5,4,1,2,3])
 a2=np.arange(10)
 a3=np.arange(2,6,0.5)
@@ -82,3 +86,19 @@ a3=np.arange(2,6,0.5)
 print('a1:',a1)
 print('a2:',a2)
 print('a3:',a3)
+
+a4 = np.array ([[1,2],[3,4],[5,6]])
+print(a4)
+
+import numpy as np
+a5=np.array(12)
+a6=a5.reshape(3,4)
+print(a6)
+
+a6.ndim
+a6.shape
+a6.dtype
+a6.astype(float)
+a6[2]
+a3[5]
+a1.sort()
