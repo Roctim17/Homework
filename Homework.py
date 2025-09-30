@@ -114,10 +114,25 @@ print(s1)
 s2 = pd.Series ([5,8,7,6]), index=['a','b','c','d']
 print(s2)
 
-s3 = pd.Series ([5,8,7,6], index['fd',25,True])
+s3 = pd.Series ([5,8,7<6], index['fd',25,True])
 print(s3)
 
 s4 =pd.Series ({'a':1,'b':'boy','c':3})
 print(s4)
 
+
+import numpy as np
+a5 = np.arange (12)
+a6 = a5.reshape (3,4)
+print (a6)
+
+a6.ndim
+a6.shape
+a6.dtype
+a6.astype (float)
+a6[2]
+a3[5]
+a1.sort()
 # End of page 18
+
+
