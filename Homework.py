@@ -134,5 +134,28 @@ a6[2]
 a3[5]
 a1.sort()
 # End of page 18
+s1 = pd.Series([2,3,4,5])
+print(s1)
+s2 = pd.Series([5,8,7,6], index = ['a','b','c','d'])
+print(s2)
+s3 = pd.Series([60,80,50], index=['fu',25,True])
+print(s3)
+s4 = pd.Series(['a':1,'b':boy,'c':3])
+print(s4)
+s5 = pd. Series ( range (5))
+print (s5)
+import pandas as pa
+s6 = pd.Series ([5, 8, 7, 6], index= ['a','b','c','d'])
+# print（'索引：',s6.index)
+# print（'数据：',s6.values)
+# print（'类型：',s6.dtype)
+s6.name ='我是一个 pandas 的 Series'
+s6.index.name= ''
+print(s6)
+s6 = s6.astype(float)
+print(s6)
 
-
+s6[[1,3]]=[2,8]
+print(s6)
+s7.pd.Series([1,2,3],index=['a','c','e'],dtype=float)
+print(s6+s7)
