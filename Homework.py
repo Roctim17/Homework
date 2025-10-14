@@ -144,6 +144,8 @@ s4 = pd.Series(['a':1,'b':boy,'c':3])
 print(s4)
 s5 = pd. Series ( range (5))
 print (s5)
+
+
 import pandas as pa
 s6 = pd.Series ([5, 8, 7, 6], index= ['a','b','c','d'])
 # print（'索引：',s6.index)
