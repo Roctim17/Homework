@@ -93,7 +93,8 @@ print(a4)
 import numpy as np
 a5=np.array(12)
 a6=a5.reshape(3,4)
-print(a6)
+a6
+print(a6,'a6')
 
 a6.ndim
 a6.shape
@@ -111,10 +112,10 @@ import pandas as pd
 s1 = pd.Series ([2,3,4,5])
 print(s1)
 
-s2 = pd.Series ([5,8,7,6]), index=['a','b','c','d']
+s2 = pd.Series ([5,8,7,6], index=['a','b','c','d'])
 print(s2)
 
-s3 = pd.Series ([5,8,7<6], index['fd',25,True])
+s3 = pd.Series ([5,8,7<6], index =['fd',25,True])
 print(s3)
 
 s4 =pd.Series ({'a':1,'b':'boy','c':3})
@@ -140,7 +141,7 @@ s2 = pd.Series([5,8,7,6], index = ['a','b','c','d'])
 print(s2)
 s3 = pd.Series([60,80,50], index=['fu',25,True])
 print(s3)
-s4 = pd.Series(['a':1,'b':boy,'c':3])
+s4 = pd.Series({'a':1,'b':'boy','c':3})
 print(s4)
 s5 = pd. Series ( range (5))
 print (s5)
@@ -159,5 +160,47 @@ print(s6)
 
 s6[[1,3]]=[2,8]
 print(s6)
-s7.pd.Series([1,2,3],index=['a','c','e'],dtype=float)
+s7=pd.Seriee([1,2,3],index=['a','c','e'],dtype=float)
 print(s6+s7)
+s8=pd.Series([1,2,3,4,5],index=['a','b','c','d','e'], dtype=float)
+c=s8.cumsum ()
+s=s8.sum()
+m=s8.mean()
+print()
+
+import pandas as pd
+d = {"姓名":["刘文涛","王宇翔","田思雨","徐丽娜","丁文彬"],
+
+"统计学":[68, 85, 74, 88, 63],
+
+"数学":[85, 91, 74, 100, 82],
+
+"经济学":[84, 63, 61, 49, 89]}
+table1_1 = pd.DataFrame (d)
+print(table1_1)
+
+import pandas as pd
+df = pd.read_csv("C:\Projects\Python\data\data\chap01\table1_1.csv",encoding='gbk')
+df[['数学']]
+print(df,'this')
+df[['数学','经济学']]
+df.loc[2]
+df.loc[[2,4]]
+df.loc[2:4]
+df['经济学']=[88,75,92,67,78]
+df
+print(df)
+df.insert(2,'经济学',[88,75,92,67,78])
+df
+print(df)
+df.drop(['经济学'],axis=1,inplace=True)
+df
+print(df)
+df.drop(index=2,inplace=True)
+df
+print(df)
+df.rename(colume={'经济学':'ROC','数学':'Rt17'})
+df.iloc[2,1]=85
+df
+print(df)
+df.loc[:,]
