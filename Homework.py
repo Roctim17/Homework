@@ -203,4 +203,10 @@ df.rename(colume={'经济学':'ROC','数学':'Rt17'})
 df.iloc[2,1]=85
 df
 print(df)
-df.loc[:,]
+df.loc[:,'']=[73,90,79,88,68]
+df
+print(df)
+
+import pandas as pd 
+table1_1 = pd.read_csv ("C:\Projects\Python\data\data\chap01\table1_1.csv",encoding='gbk')
+table1_1.sort_values (by='')
