@@ -29,7 +29,7 @@ R=example3_1[''].max()- example3_1[''].min()
 print(':',R)
 
 import numpy as np
-IQR = np.quantile(example3_1['',q=0.25])-np.quantile(example3_1[''],q=0.25)
+IQR = np.quantile(example3_1[''], q = 0.25)-np.quantile(example3_1[''],q=0.25)
 print('IQR =',IQR)
 
 #Page 95
@@ -38,7 +38,7 @@ var = example3_1[''].var(ddof=1)
 print(':',var)
 
 sd=example3_1[''].std()
-print(':'round(sd,2))
+print(':',round(sd,2))
 
 #page 96
 import pandas as pd
@@ -47,4 +47,11 @@ example2_3 = pd.read_csv('C:\Projects\Python\data\data\chap03\example2_3.CSV', e
 s_mean = example2_3.mean()
 s_sd = example2_3.std()
 s_cv = s_sd / s_mean
-df = pd.DataFrame
+df = pd.DataFrame({"":s_mean,"":s_cv})
+np.round(df,4)
+
+#page 97
+from scipy import stats
+example3_1 = pd.read_csv('C:\Projects\Python\data\data\chap03\example3_1.CSV',encoding="gbk")
+z = np.round(z,4)
+print(':','\n',z)
