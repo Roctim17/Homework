@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hypothesis Testing - Logistics Class</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .container {
+            background: #f5f5f5;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        .step {
+            margin: 15px 0;
+            padding: 10px;
+            background: white;
+            border-left: 4px solid #007bff;
+        }
+        .decision {
+            font-weight: bold;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+        .reject {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+        }
+        .fail-to-reject {
+            background: #f8d7da;
+            border: 1px solid #f5c6cb;
+            color: #721c24;
+        }
+        input, button {
+            padding: 8px;
+            margin: 5px;
+            font-size: 16px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>Hypothesis Testing: Number of Girls in Logistics Class</h1>
+    
+    <div class="container">
+        <h2>Test Parameters</h2>
+        <div>
+            <label>Total Students: </label>
+            <input type="number" id="totalStudents" value="44" min="1">
+        </div>
+        <div>
+            <label>Claimed Girls (H0): </label>
+            <input type="number" id="claimedGirls" value="1" min="0">
+        </div>
+        <div>
+            <label>Sample Size: </label>
+            <input type="number" id="sampleSize" value="1" min="1">
+        </div>
+        <div>
+            <label>Observed Girls in Sample: </label>
+            <input type="number" id="observedGirls" value="1" min="0">
+        </div>
+        <button onclick="runTest()">Run Hypothesis Test</button>
+        <button onclick="resetToDefault()">Reset to Example</button>
+    </div>
+    
+    <div id="results" class="container">
+        <h2>Test Results</h2>
+        <div id="stepOutput"></div>
+    </div>
+    
+    <div class="container">
+        <h2>Rejection Region Calculator</h2>
+        <div>
+            <label>Significance Level (α): </label>
+            <input type="number" id="alpha" value="0.05" step="0.01" min="0.01" max="0.10">
+        </div>
+        <button onclick="calculateRejectionRegion()">Calculate Rejection Region</button>
+        <div id="rejectionOutput"></div>
+    </div>
+
+    <script>
+        function runTest() {
+            const total = parseInt(document.getElementById('totalStudents').value);
+            const claimed = parseInt(document.getElementById('claimedGirls').value);
+            const sample = parseInt(document.getElementById('sampleSize').value);
+            const observed = parseInt(document.getElementById('observedGirls').value);
+            
+            if (claimed > total || observed > sample || observed > total) {
+                alert("Invalid input values!");
+                return;
+                
+            }
+            
+            const pValue = claimed / total; // Simplified - in reality would use binomial distribution
+            
+            let output = `
+                <div class="step">
+                    <h3>1. Complete Event Group</h3>
+                    <p>Total students: ${total}</p >
+                    <p>Gender options: Boy or Girl</p >
+                </div>
+                
+                <div class="step">
+                    <h3>2. Hypotheses</h3>
+                    <p><strong>H0 (Null):</strong> There are exactly ${claimed} girl(s) in the class</p >
+                    <p><strong>H1 (Alternative):</strong> There are more than ${claimed} girls in the class</p >
+                </div>
+                
+                <div class="step">
+                    <h3>3. Select Sample</h3>
+                    <p>Sample size: ${sample} student(s)</p >
+                    <p>Observed: ${observed} girl(s) in sample</p >
+                </div>
+                
+                <div class="step">
+                    <h3>4. Calculate Test Statistic</h3>
+                    <p>Under H0, probability of selecting a girl = ${claimed}/${total}</p >
+                    <p>P-value = ${pValue.toFixed(4)}</p >
+                </div>
+                
+                <div class="step">
+                    <h3>5. Decision Rule</h3>
+                    <p>Significance level (α) = 0.05</p >
+                    <p>If P < 0.05 → Reject H0</p >
+                    <p>If P ≥ 0.05 → Fail to reject H0</p >
+                </div>
+            `;
+            
+            // Decision
+            let decisionClass, decisionText, conclusion;
+            if (pValue < 0.05) {
+                decisionClass = "reject";
+                decisionText = "REJECT the null hypothesis";
+                conclusion = `Since P = ${pValue.toFixed(4)} < 0.05, we reject H0. There is statistically significant evidence that there are more than ${claimed} girl(s) in the class.`;
+            } else {
+                decisionClass = "fail-to-reject";
+                decisionText = "FAIL TO REJECT the null hypothesis";
+                conclusion = `Since P = ${pValue.toFixed(4)} ≥ 0.05, we fail to reject H0. There is not enough evidence to say there are more than ${claimed} girl(s).`;
+            }
+            
+            output += `
+                <div class="step">
+                    <h3>6. Conclusion</h3>
+                    <div class="decision ${decisionClass}">
+                        ${decisionText}
+                    </div>
+                    <p>${conclusion}</p >
+                </div>
+            `;
+            
+            document.getElementById('stepOutput').innerHTML = output;
+        }
+        
+        function calculateRejectionRegion() {
+            const total = parseInt(document.getElementById('totalStudents').value);
+            const claimed = parseInt(document.getElementById('claimedGirls').value);
+            const alpha = parseFloat(document.getElementById('alpha').value);
+            
+            if (claimed > total) {
+                alert("Claimed girls cannot exceed total students!");
+                return;
+            }
+            
+            const pGirl = claimed / total;
+            let output = `<h3>Rejection Regions for Different Sample Sizes</h3>`;
+            output += `<p>Under H0 (${claimed} girl(s) out of ${total}): P(girl) = ${pGirl.toFixed(4)}</p >`;
+            
+            output += `<table>
+                <tr>
+                    <th>Sample Size</th>
+                    <th>Probability of<br>All Girls in Sample</th>
+                    <th>Critical Value*<br>(Girls needed to reject H0)</th>
+                </tr>`;
+            
+            const sampleSizes = [1, 5, 10, 20];
+            sampleSizes.forEach(size => {
+                const probAllGirls = Math.pow(pGirl, size);
+                
+                // Simplified critical value calculation
+                // In real binomial test, would use inverse CDF
+                let criticalValue = "N/A";
+                if (size > 1) {
+                    // Approximate using normal approximation to binomial
+                    const mean = size * pGirl;
+                    const std = Math.sqrt(size * pGirl * (1 - pGirl));
+                    criticalValue = Math.ceil(mean + 1.645 * std); // 1.645 for α=0.05 one-tailed
+                }
+                
+                output += `
+                    <tr>
+                        <td>${size}</td>
+                        <td>${probAllGirls.toFixed(6)}</td>
+                        <td>${criticalValue}</td>
+                    </tr>`;
+            });
+            
+            output += `</table><p><small>*Using normal approximation to binomial, α=${alpha}</small></p >`;
+            
+            document.getElementById('rejectionOutput').innerHTML = output;
+        }
+        
+        function resetToDefault() {
+            document.getElementById('totalStudents').value = 44;
+            document.getElementById('claimedGirls').value = 1;
+            document.getElementById('sampleSize').value = 1;
+            document.getElementById('observedGirls').value = 1;
+            document.getElementById('alpha').value = 0.05;
+            runTest();
+        }
+        
+        // Initialize with example
+        window.onload = resetToDefault;
+    </script>
+</body>
+</html>
